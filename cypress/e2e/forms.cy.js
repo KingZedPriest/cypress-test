@@ -26,5 +26,10 @@ describe("Form test", () => {
         cy.contains(/Invalid email: sample@email.io!/i).should("exist");
         cy.wait(3000);
         cy.contains(/Invalid email: sample@email.io!/i).should("not.exist");
+
+        //For empty input field
+        cy.contains(/fail!/i).should("not.exist")
+        cy.getDataTest("subscribe-button").click();
+        cy.contains(/fail!/i).should("exist")
     });
 })
