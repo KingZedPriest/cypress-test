@@ -74,7 +74,7 @@ export default function GrudgeList() {
                 }
             </ul>
             {
-                grudges.length > 0 && <Button onClick={clearGrudges}>Clear</Button>
+                grudges.length > 0 && <Button data-test="clear-button" onClick={clearGrudges}>Clear</Button>
             }
         </div>
     )

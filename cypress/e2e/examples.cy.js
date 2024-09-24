@@ -43,6 +43,7 @@ describe("Various examples", () => {
     cy.getDataTest("grudge-list").within(() => {
       cy.get("li").should("have.length", 0);
     });
+    cy.getDataTest("clear-button").should("not.exist");
 
     //Validate the grudge input
     //First Grudge Sample
@@ -74,6 +75,12 @@ describe("Various examples", () => {
     });
     cy.getDataTest("grudge-list").within(() => {
       cy.get("li").should("have.length", 1);
+    });
+
+    //Test for the clear button
+    cy.getDataTest("clear-button").click();
+    cy.getDataTest("grudge-list").within(() => {
+      cy.get("li").should("have.length", 0);
     });
   });
 });
