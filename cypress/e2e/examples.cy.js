@@ -37,9 +37,9 @@ describe("Various examples", () => {
     });
     cy.getDataTest("post-button").click();
   });
-  it.only("grudges", () => {
+  it("grudges", () => {
     //Make sure there is no grudge list
-    cy.contains(/add some grudges/i);
+    cy.getDataTest("grudge-list-title").should("have.text", "Add Some Grudges");
     cy.getDataTest("grudge-list").within(() => {
       cy.get("li").should("have.length", 0);
     });
@@ -54,6 +54,7 @@ describe("Various examples", () => {
     cy.getDataTest("grudge-list").within(() => {
       cy.get("li").should("have.length", 1);
     });
+    cy.getDataTest("grudge-list-title").should("have.text", "Grudges");
 
     //Second Grudge Sample
     cy.getDataTest("grudge-input").within(() => {
