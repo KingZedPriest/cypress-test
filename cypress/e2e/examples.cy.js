@@ -45,12 +45,35 @@ describe("Various examples", () => {
     });
 
     //Validate the grudge input
+    //First Grudge Sample
     cy.getDataTest("grudge-input").within(() => {
       cy.get("input").type("Some grudge");
     });
     cy.getDataTest("add-grudge-button").click();
     cy.getDataTest("grudge-list").within(() => {
-        cy.get("li").should("have.length", 1);
-      });
+      cy.get("li").should("have.length", 1);
+    });
+
+    //Second Grudge Sample
+    cy.getDataTest("grudge-input").within(() => {
+      cy.get("input").type("Some grudge 2");
+    });
+    cy.getDataTest("add-grudge-button").click();
+    cy.getDataTest("grudge-list").within(() => {
+      cy.get("li").should("have.length", 2);
+      cy.get("li").its(0).should("contains.text", "Some grudge");
+    });
+
+    //Test the X button, and make sure it works
+    cy.getDataTest("grudge-list").within(() => {
+      cy.get("li")
+        .its(0)
+        .within(() => {
+          cy.get("button").click();
+        });
+    });
+    cy.getDataTest("grudge-list").within(() => {
+      cy.get("li").should("have.length", 1);
+    });
   });
 });
